@@ -1,9 +1,11 @@
 
 let slides = document.querySelectorAll(".myslides"),
 	dots = document.querySelectorAll(".dot"),
+	dotsArea = document.querySelector(".dots"),
 	prev = document.querySelector(".prev"),
 	next = document.querySelector(".next"),
 	number = document.querySelectorAll(".numbertext"),
+	img = document.querySelectorAll("img");
 	slideindex = 1;
 
 showSlide(slideindex);
@@ -29,11 +31,24 @@ function showSlide(n) {
 function counter() {
 	for (let i = 0; i < number.length; i++) {
 		number[i].innerHTML = slideindex + "/3";
+		img[i].src = "css/image/img" + slideindex + ".jpg";
+	}
+}
+
+dotsArea.onclick = function (e) {
+	for (let i = 0; i < dots.length + 1; i++) {
+		if (e.target.classList.contains("dot") && e.target == dots[i - 1]) {
+			currentSlide(i);
+		}
 	}
 }
 
 function plusSlide(n) {
 	showSlide(slideindex += n);
+}
+
+function currentSlide(n) {
+	showSlide(slideindex = n);
 }
 
 prev.onclick = function() {
@@ -42,10 +57,6 @@ prev.onclick = function() {
 
 next.onclick = function() {
 	plusSlide(-1);
-}
-
-function currentSlide(n) {
-	showSlide(slideindex = n);
 }
 
 
