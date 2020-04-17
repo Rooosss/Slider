@@ -65,6 +65,7 @@ img {
 }
 
 .numbertext {
+	margin: 2px 8px;
 	position: absolute;
 	color: white;
 }

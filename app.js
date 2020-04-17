@@ -16,26 +16,28 @@ function showSlide(n) {
 	} else if (n > slides.length) {
 		slideindex = 1;
 	}
+
 	for (let i = 0; i < slides.length; i++) {
 		slides[i].style.display = "none";
 	}
+
 	for (let i = 0; i < dots.length; i++) {
 		dots[i].classList.remove("active");
 	}
 	
 	slides[slideindex - 1].style.display = "block";
 	dots[slideindex - 1].classList.add("active");
-	counter();
+	slideNumber();
 }
 
-function counter() {
+function slideNumber() {
 	for (let i = 0; i < number.length; i++) {
-		number[i].innerHTML = slideindex + "/3";
+		number[i].innerHTML = slideindex + "/" + number.length;
 		img[i].src = "css/image/img" + slideindex + ".jpg";
 	}
 }
 
-dotsArea.onclick = function (e) {
+function slideList(e) {
 	for (let i = 0; i < dots.length + 1; i++) {
 		if (e.target.classList.contains("dot") && e.target == dots[i - 1]) {
 			currentSlide(i);
@@ -59,5 +61,7 @@ next.onclick = function() {
 	plusSlide(-1);
 }
 
-
+dotsArea.onclick = function() {
+	slideList(event);
+}
 
