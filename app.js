@@ -1,9 +1,9 @@
-let slides = document.querySelectorAll(".myslides"),
+let slides = document.querySelectorAll(".my-slides"),
   dots = document.querySelectorAll(".dot"),
   dotsArea = document.querySelector(".dots"),
   prev = document.querySelector(".prev"),
   next = document.querySelector(".next"),
-  number = document.querySelectorAll(".numbertext"),
+  number = document.querySelectorAll(".number-text"),
   img = document.querySelectorAll("img");
   slideindex = 1;
 
@@ -15,17 +15,16 @@ function showSlide(n) {
   }
 
   for (let i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-    dots[i].classList.remove("active");
-    slides[slideindex - 1].style.display = "block";
-    dots[slideindex - 1].classList.add("active");
+    dots[i].classList.remove("active-dot");
+    slides[slideindex - 1].classList.add("active-slide");
+    dots[slideindex - 1].classList.add("active-dot");
   }
   setSlideNumber();
 }
 showSlide(slideindex);
 
 prev.onclick = function() {
-  showSlide(slideindex += -1);
+  showSlide(slideindex -= 1);
 }
 
 next.onclick = function() {

@@ -1,71 +1,79 @@
 body {
-	margin: 0;
-	font-size: 14px;
+  margin: 0;
+  font-size: 14px;
 }
 
 img {
-	height: 600px;
-	width: 100%;
+  height: 600px;
+  width: 100%;
 }
 
 .slideshow {
-	max-width: 1000px;
-	position: relative;
-	margin: auto;
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
 }
 
 .prev, .next {
-	position: absolute;
-	top: 0;
-	cursor: pointer;
-	width: auto;
-	padding: 289px 16px;
-	color: white;
-	font-weight: bold;
-	font-size: 18px;
-	transition: 0.3s ease;
-	background-color: silver;
+  position: absolute;
+  top: 0;
+  cursor: pointer;
+  width: auto;
+  padding: 289px 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.3s ease;
+  background-color: silver;
 }
 
 .dots {
-	text-align: center;
+  text-align: center;
 }
 
 .prev {
-	left: -40px;
-	border-radius: 5px 0 0 5px;
+  left: -40px;
+  border-radius: 5px 0 0 5px;
 }
 
 .next {
-	right: -40px;
-	border-radius: 0 5px 5px 0;
+  right: -40px;
+  border-radius: 0 5px 5px 0;
 }
 
 .dot {
-	height: 13px;
-	width: 13px;
-	margin: 0 2px;
-	background-color: #bbb;
-	border-radius: 50%;
-	cursor: pointer;
-	display: inline-block;
-	transition: background-color 0.6s ease;
+  height: 13px;
+  width: 13px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-block;
+  transition: background-color 0.6s ease;
 }
 
 .dot:hover {
-	background-color: #717171
+  background-color: #717171
 }
 
 .prev:hover, .next:hover {
-	background-color: gray;
+  background-color: gray;
 }
 
-.active {
-	background-color: #717171
+.active-dot {
+  background-color: #717171
 }
 
-.numbertext {
-	margin: 2px 8px;
-	position: absolute;
-	color: white;
+.number-text {
+  margin: 2px 8px;
+  position: absolute;
+  color: white;
+}
+
+.active-slide {
+  display: block;
+}
+
+.hiden {
+  display: none;
 }
