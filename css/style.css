@@ -32,13 +32,13 @@ img {
 }
 
 .prev {
-	right: -40px;
-	border-radius: 0 5px 5px 0;
+	left: -40px;
+	border-radius: 5px 0 0 5px;
 }
 
 .next {
-	left: -40px;
-	border-radius: 5px 0 0 5px;
+	right: -40px;
+	border-radius: 0 5px 5px 0;
 }
 
 .dot {

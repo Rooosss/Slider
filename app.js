@@ -1,4 +1,3 @@
-
 let slides = document.querySelectorAll(".myslides"),
 	dots = document.querySelectorAll(".dot"),
 	dotsArea = document.querySelector(".dots"),
@@ -7,8 +6,6 @@ let slides = document.querySelectorAll(".myslides"),
 	number = document.querySelectorAll(".numbertext"),
 	img = document.querySelectorAll("img");
 	slideindex = 1;
-
-showSlide(slideindex);
 
 function showSlide(n) {
 	if (n < 1) {
@@ -19,49 +16,33 @@ function showSlide(n) {
 
 	for (let i = 0; i < slides.length; i++) {
 		slides[i].style.display = "none";
+    dots[i].classList.remove("active");
+    slides[slideindex - 1].style.display = "block";
+    dots[slideindex - 1].classList.add("active");
 	}
 
-	for (let i = 0; i < dots.length; i++) {
-		dots[i].classList.remove("active");
+	prev.onclick = function() {
+		showSlide(slideindex += -1);
 	}
-	
-	slides[slideindex - 1].style.display = "block";
-	dots[slideindex - 1].classList.add("active");
-	slideNumber();
+
+  next.onclick = function() {
+    showSlide(slideindex += 1);
+  }
+  setSlideNumber();
 }
+showSlide(slideindex);
 
-function slideNumber() {
+function setSlideNumber() {
 	for (let i = 0; i < number.length; i++) {
 		number[i].innerHTML = slideindex + "/" + number.length;
 		img[i].src = "css/image/img" + slideindex + ".jpg";
 	}
 }
 
-function slideList(e) {
-	for (let i = 0; i < dots.length + 1; i++) {
-		if (e.target.classList.contains("dot") && e.target == dots[i - 1]) {
-			currentSlide(i);
-		}
-	}
+dotsArea.onclick = function(e) {
+  for (let i = 0; i < dots.length + 1; i++) {
+    if (e.target == dots[i - 1]) {
+      showSlide(slideindex = i);
+    }
+  }
 }
-
-function plusSlide(n) {
-	showSlide(slideindex += n);
-}
-
-function currentSlide(n) {
-	showSlide(slideindex = n);
-}
-
-prev.onclick = function() {
-	plusSlide(1);
-}
-
-next.onclick = function() {
-	plusSlide(-1);
-}
-
-dotsArea.onclick = function() {
-	slideList(event);
-}
-
