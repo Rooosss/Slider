@@ -70,10 +70,10 @@ img {
   color: white;
 }
 
-.active-slide {
+.visible {
   display: block;
 }
 
-.hiden {
+.hidden {
   display: none;
 }
