@@ -8,6 +8,12 @@ img {
   width: 100%;
 }
 
+#fileInput {
+  position: absolute;
+  top: 30%;
+  left: 44%;
+}
+
 .slideshow {
   max-width: 1000px;
   position: relative;
@@ -29,6 +35,9 @@ img {
 
 .dots {
   text-align: center;
+  position: absolute;
+  top: 620px;
+  left: 48%;
 }
 
 .prev {

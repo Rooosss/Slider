@@ -5,6 +5,7 @@ let slides = document.querySelectorAll(".my-slides"),
     next = document.querySelector(".next"),
     number = document.querySelectorAll(".number-text"),
     img = document.querySelectorAll("img");
+    input = document.querySelector("input"),
     slideindex = 1;
 
 function showSlide(n) {
@@ -35,7 +36,6 @@ next.onclick = function() {
 function setSlideNumber() {
   for (let i = 0; i < number.length; i++) {
     number[i].innerHTML = slideindex + "/" + number.length;
-    img[i].src = "css/image/img" + slideindex + ".jpg";
   }
 }
 
@@ -46,3 +46,22 @@ dotsArea.onclick = function(e) {
     }
   }
 }
+
+
+let  insFiles = input.files;
+
+for(let i = 0; i < insFiles.length; i++) {
+
+  let div = document.createElement("div");
+  div.classList.add("my-slides");
+  document.querySelector(".slideshow").prepend(div);
+
+  let num = document.createElement("div");
+  num.classList.add("number-text");
+  document.querySelector(".my-slides").append(num);
+
+  let image = document.createElement("img");
+  img.src = URL.createObjectURL(insFiles[i]);
+  document.querySelector(".my-slides").append(img);
+}
+
