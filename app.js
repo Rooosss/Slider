@@ -4,8 +4,8 @@ let slides = document.querySelectorAll(".my-slides"),
     prev = document.querySelector(".prev"),
     next = document.querySelector(".next"),
     number = document.querySelectorAll(".number-text"),
-    img = document.querySelectorAll("img");
-    input = document.querySelector("input"),
+    img = document.querySelectorAll("img"),
+    input = document.querySelector("#fileInput"),
     slideindex = 1;
 
 function showSlide(n) {
@@ -48,8 +48,8 @@ dotsArea.onclick = function(e) {
 }
 
 
+/*
 let  insFiles = input.files;
-
 for(let i = 0; i < insFiles.length; i++) {
 
   let div = document.createElement("div");
@@ -64,4 +64,42 @@ for(let i = 0; i < insFiles.length; i++) {
   img.src = URL.createObjectURL(insFiles[i]);
   document.querySelector(".my-slides").append(img);
 }
+*/
+
+
+window.onload = function() {
+  let dropBox = document.getElementById("dropBox");
+  dropBox.ondragenter = ignoreDrag;
+  dropBox.ondragover = ignoreDrag;
+  dropBox.ondrop = drop;
+}
+
+function ignoreDrag(e) {
+  e.stopPropagation();
+  e.preventDefault();
+}
+
+function drop(e) {
+  e.stopPropagation();
+  e.preventDefault();
+  let data = e.dataTransfer;
+  let files = data.files;
+  handleFileSelect();
+}
+
+function handleFileSelect() {
+
+  let  insFiles = input.files;
+  for (let i = 0; i < insFiles.length; i++) {
+
+    let reader = new FileReader();
+    reader.onload = function() {
+
+      img.src = window.URL.createObjectURL(insFiles[i]);
+    }
+    reader.readAsDataURL();
+  }
+}
+
+input.addEventListener('change', handleFileSelect);
 
