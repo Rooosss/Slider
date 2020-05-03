@@ -9,12 +9,8 @@
     
 <div class="slideshow">
 
-  <div class="my-slides">
-    <div class="number-text"></div>
-    <img src="">
-  </div>
-    <a class="prev">&#10094</a>
-    <a class="next">&#10095</a>
+  <a class="prev">&#10094</a>
+  <a class="next">&#10095</a>
   <div class="dots">
     <span class="dot"></span>
     <span class="dot"></span>
@@ -24,11 +20,9 @@
 
 <div class="insert-image">
 
-  <input type="file" id="fileInput" multiple>
+  <input type="file" id="fileInput" name="files[]" multiple>
+  <label for="fileInput">Choose your file..</label>
   <button class="load">Загрузить</button>
-  <div id="dropBox">
-    <div>Перетащите изображение сюда...</div>
-  </div>
 </div>
     
 <script src="app.js"></script>

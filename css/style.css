@@ -68,8 +68,8 @@ img {
 }
 
 .number-text {
-  margin: 2px 8px;
   position: absolute;
+  margin: 5px 8px;
   color: white;
 }
 
@@ -81,30 +81,22 @@ img {
   display: none;
 }
 
-#dropBox {
-  position: absolute;
-  top: 15px;
-  margin-left: 15px;
-  width: 300px;
-  height: 300px;
-  border: 5px dashed gray;
-  border-radius: 8px;
-  background: lightyellow;
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  text-align: center;
-}
- 
-#dropBox div {
-  margin: 100px 70px;
-  color: black;
-  font-size: 25px;
+#fileInput {
+  display: none;
 }
 
-#fileInput {
+label {
   position: absolute;
-  top: 40%;
-  left: 40px;
+  top: 20px;
+  left: 30px;
+  width: 300px;
+  height: 150px;
+  padding-top: 150px;
+  border: 5px dashed gray;
+  border-radius: 8px;
+  background: lightblue;
+  cursor: pointer;
+  text-align: center;
 }
 
 .load {
@@ -114,7 +106,7 @@ img {
   border-radius: 15px;
   padding: 20px 50px;
   position: absolute;
-  top: 47%;
+  top: 360px;
   left: 90px;
   display: none;
 }

@@ -5,7 +5,7 @@ let slides = document.querySelectorAll(".my-slides"),
     next = document.querySelector(".next"),
     number = document.querySelectorAll(".number-text"),
     img = document.querySelectorAll("img"),
-    input = document.querySelector("#fileInput"),
+    input = document.querySelector("input"),
     slideindex = 1;
 
 function showSlide(n) {
@@ -48,58 +48,33 @@ dotsArea.onclick = function(e) {
 }
 
 
-/*
-let  insFiles = input.files;
-for(let i = 0; i < insFiles.length; i++) {
+function handleFileSelect(evt) {
+  let files = evt.target.files;
 
-  let div = document.createElement("div");
-  div.classList.add("my-slides");
-  document.querySelector(".slideshow").prepend(div);
-
-  let num = document.createElement("div");
-  num.classList.add("number-text");
-  document.querySelector(".my-slides").append(num);
-
-  let image = document.createElement("img");
-  img.src = URL.createObjectURL(insFiles[i]);
-  document.querySelector(".my-slides").append(img);
-}
-*/
-
-
-window.onload = function() {
-  let dropBox = document.getElementById("dropBox");
-  dropBox.ondragenter = ignoreDrag;
-  dropBox.ondragover = ignoreDrag;
-  dropBox.ondrop = drop;
-}
-
-function ignoreDrag(e) {
-  e.stopPropagation();
-  e.preventDefault();
-}
-
-function drop(e) {
-  e.stopPropagation();
-  e.preventDefault();
-  let data = e.dataTransfer;
-  let files = data.files;
-  handleFileSelect();
-}
-
-function handleFileSelect() {
-
-  let  insFiles = input.files;
-  for (let i = 0; i < insFiles.length; i++) {
+  for(let i = 0, f; f = files[i]; i++) {
 
     let reader = new FileReader();
-    reader.onload = function() {
+    reader.onloadend = (function(theFile) {
+      return function(e) {
 
-      img.src = window.URL.createObjectURL(insFiles[i]);
-    }
-    reader.readAsDataURL();
+        let div = document.createElement("div");
+        div.classList.add("my-slides");
+        document.querySelector(".slideshow").prepend(div);
+
+        let num = document.createElement("div");
+        num.classList.add("number-text");
+        document.querySelector(".my-slides").append(num);
+
+        let newImg = document.createElement("div");
+        newImg.innerHTML = `<img src="${e.target.result}"/>`;
+        document.querySelector(".my-slides").append(newImg);
+        
+      }
+    })(f);
+
+    reader.readAsDataURL(f);
   }
 }
 
-input.addEventListener('change', handleFileSelect);
 
+input.addEventListener('change', handleFileSelect, false);
