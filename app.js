@@ -10,20 +10,19 @@ let slides = document.querySelectorAll(".my-slides"),
 
 function showSlide(n) {
   if (n < 1) {
-    slideindex = slides.length;
-  } else if (n > slides.length) {
+    slideindex = img.length;
+  } else if (n > img.length) {
     slideindex = 1;
   }
 
-  for (let i = 0; i < slides.length; i++) {
+  for (let i = 0; i < img.length; i++) {
     dots[i].classList.remove("active-dot");
-    slides[slideindex - 1].classList.add("visible");
+    img[i].classList.add("hidden");
+    img[slideindex - 1].classList.add("visible");
     dots[slideindex - 1].classList.add("active-dot");
   }
   setSlideNumber();
 }
-
-showSlide(slideindex);
 
 prev.onclick = function() {
   showSlide(slideindex -= 1);
@@ -34,7 +33,7 @@ next.onclick = function() {
 }
 
 function setSlideNumber() {
-  for (let i = 0; i < number.length; i++) {
+  for (let i = 0; i < img.length; i++) {
     number[i].innerHTML = slideindex + "/" + number.length;
   }
 }
@@ -52,29 +51,25 @@ function handleFileSelect(evt) {
   let files = evt.target.files;
 
   for(let i = 0, f; f = files[i]; i++) {
-
     let reader = new FileReader();
-    reader.onloadend = (function(theFile) {
+    reader.onload = (function(theFile) {
       return function(e) {
 
-        let div = document.createElement("div");
-        div.classList.add("my-slides");
-        document.querySelector(".slideshow").prepend(div);
-
-        let num = document.createElement("div");
-        num.classList.add("number-text");
-        document.querySelector(".my-slides").append(num);
-
-        let newImg = document.createElement("div");
-        newImg.innerHTML = `<img src="${e.target.result}"/>`;
+        let newImg = document.createElement("img");
+        newImg.src = e.target.result;
         document.querySelector(".my-slides").append(newImg);
-        
       }
     })(f);
 
     reader.readAsDataURL(f);
   }
+  callback(showSlide(slideindex));
 }
 
 
-input.addEventListener('change', handleFileSelect, false);
+input.addEventListener('change', handleFileSelect);
+
+input.onchange = function() {
+  document.querySelector(".insert-image").classList.add("hidden");
+  document.querySelector(".slideshow").classList.add("visible");
+}
